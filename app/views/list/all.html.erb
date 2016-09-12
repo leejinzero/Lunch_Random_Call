@@ -1,0 +1,32 @@
+<div class="content--pad-top_39 b-content" >
+  <div class="container">    
+    <div class ="b-main b-main--extended">
+      <div class ="b-index-header">
+      
+      </div>
+      <div class="row" style="width:1050px">
+        <% @restaurant.each do |x| %>
+        <div class="col-sm-6 ng-scope" ng-repeat="restaurant in restaurant_list">
+        <div class="item clearfix" ng-click="select_restaurant(restaurant)" style="cursor: pointer;">
+          
+          <div class="restaurants-info">
+            <div class="restaurant-name ng-binding" ng-bind="restaurant.name"><%= x.name %></div>
+            <div class="stars">
+              
+              
+              <span ng-show="restaurant.review_count > 0" class="ng-binding">
+                  <%= x.average_score %>점
+                  /
+                  751건의 리뷰
+              </span>
+            </div>
+          </div>
+        </div>
+        </div>
+        <% end %>
+        
+        
+      </div>
+    </div>
+  </div>
+</div>  

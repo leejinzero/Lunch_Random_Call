@@ -1,0 +1,249 @@
+
+<div class="container-fluid">
+  <div class="row" style ="margin-top: 110px">
+    
+  </div>
+</div>
+<div class="container">
+  <div class="row cafedetail-container">
+    <div class="col-md-12">
+      <div class="col-md-12 cafeinfo-container">
+        <div class="col-md-8">
+          <div id="googleMap" style="width:500px;height:300px;">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="col-md-6">
+            <p class="cafedetail-cafename">
+              <span>
+                <%= @restaurant.name %>
+              </span>
+            </p>
+          </div>
+          <div class="col-md-6">
+            <div class="content-score">
+              <span class="star-rating">
+                <% 1.upto(5) do |i| %>
+                  <% if i == @restaurant.average_score.round(0) %>
+                    <i class="on"></i>
+                  <% else %>
+                    <i></i>
+                  <% end %>
+                <% end %>
+              </span>
+              <span><%= @restaurant.average_score %>점/<%= @restaurant.comments.size %>명 </span>
+            </div>
+          </div>
+          <div>
+            <p class="cafedetail-cafeaddr">
+              <% @restaurant.restaurant_foodtypes.each do |rf| %>
+                <span>
+                  <a style="font-style:bold">
+                    <%= rf.foodtype.name %>
+                  </a>
+                </span>
+              <% end %>
+            </p>
+            <p class="cafedetail-cafeaddr">
+              <span>
+                연락처: <%= @restaurant.phone_number %>
+              </span>
+            </p>
+            <p class="cafedetail-cafeaddr">
+              <span>
+                주소: <%= @restaurant.address %>
+              </span>
+            </p>
+            <p class="cafedetail-cafesignature">
+              <div class="table-responsive table-scroll">
+                <table class="table">
+                  <thead>
+                    <strong><%= @restaurant.name %></strong>의 메뉴
+                  </thead>
+                  <tr>
+                    <th>메뉴명</th>
+                    <th>가격</th>
+                  </tr>
+                  <tbody class="">
+                    <!-- 샘플  -->
+                    <tr>  
+                      <td>
+                        돼지김치찌개
+                      </td>
+                      <td>
+                        2,000원
+                      </td>
+                    </tr>
+                    <tr>  
+                      <td>
+                        돼지김치찌개
+                      </td>
+                      <td>
+                        2,000원
+                      </td>
+                    </tr>
+                    <tr>  
+                      <td>
+                        돼지김치찌개
+                      </td>
+                      <td>
+                        2,000원
+                      </td>
+                    </tr>
+                    <tr>  
+                      <td>
+                        돼지김치찌개
+                      </td>
+                      <td>
+                        2,000원
+                      </td>
+                    </tr>
+                    <tr>  
+                      <td>
+                        돼지김치찌개
+                      </td>
+                      <td>
+                        2,000원
+                      </td>
+                    </tr>
+                    <tr>
+                      <% @restaurant.menus.each do |m|  %>
+                        <td>
+                          <%= m.name %>
+                        </td>
+                        <td>
+                          <%= m.price %>
+                        </td>
+                      <% end %>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+      <!-- 코멘트 달기 -->      
+      <% @comments.reverse.each do |x| %>
+        <div class="col-md-12 cafereplies-container">
+          <div class="col-md-3">
+            <img src ="<%= x.user.image %>" >
+            <%= x.user.name %> :
+          </div>
+          <div class="col-md-4 cafecomment-content">
+            <p><%= x.comment %></p>
+          </div>
+          <div class="col-md-2">
+            <div class="star-show">
+              <span class="star-rating">
+                <% 1.upto(5) do |i| %>
+                  <% if i == x.score %>
+                    <i class="on"></i>
+                  <% else %>
+                    <i></i>
+                  <% end %>
+                <% end %>
+              </span>
+            </div>
+          </div>
+          <div class="col-md-3" style="color:#777777;">
+            <div>
+              <p>
+                <%= x.updated_at.in_time_zone(9).strftime("%Y년 %m월 %d일 \n %p %I:%M")%>
+              </p>
+            </div>
+            <div>
+              <% if user_signed_in? %>
+                <% if x.user.id == current_user.id %>
+                  <a href="/home/modify_comment/<%= x.id %>" role="button">
+                    <i class="fa fa-wrench fa-2x"></i>
+                  </a>
+                  <a href="/home/delete_comment/<%= x.id %>" role="button">
+                    <i class="fa fa-trash fa-2x"></i>
+                  </a>
+                <% end %>
+              <% end %>  
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <%= paginate @comments %>
+      
+      <% if user_signed_in? %>
+        <div class="col-md-12 cafereplies-container">
+        <form action="/restaurant/new" method="GET" enctype="multipart/form-data" style="width:100%">    
+          <div class="col-md-6 cafecomment-content">
+            <input type="text" class="form-control" name="msg" placeholder="별점 체크 후 평가를 남겨주세요" required>
+          </div>
+          <div class="col-md-4">
+            <span class="star-rating">
+              <input type="radio" name="rating" value="1" required><i></i>
+              <input type="radio" name="rating" value="2" required><i></i>
+              <input type="radio" name="rating" value="3" required><i></i>
+              <input type="radio" name="rating" value="4" required><i></i>
+              <input type="radio" name="rating" value="5" required><i></i>
+            </span>
+          </div>     
+          <div class="col-md-2">
+            <input type="hidden" name="id" value = "<%= @restaurant.id %>" >
+            <input class="btn btn-default pull-left" type="submit" value="코멘트추가" >
+          </div>
+        </form>
+      </div>
+      <% end %>
+      <div class="col-md-12 commentview-container">
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+ <!--<script type="text/javascript">-->
+    
+    
+ <!--   var myCenter=new google.maps.LatLng(<%= @restaurant.latitude %>, <%= @restaurant.longitude %>)-->
+ <!--   function initialize() {-->
+ <!--     var mapProp = {-->
+ <!--       center:myCenter,-->
+ <!--       zoom:16,-->
+ <!--       mapTypeId:google.maps.MapTypeId.ROADMAP-->
+ <!--     };-->
+ <!--     var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);-->
+      
+ <!--     var marker=new google.maps.Marker({-->
+ <!--         position:myCenter,-->
+ <!--         title: 'Click to Zoom'-->
+ <!--         });-->
+        
+ <!--       marker.setMap(map);-->
+ <!--     }-->
+ <!--     google.maps.event.addDomListener(window, 'load', initialize);-->
+     
+    
+    
+    
+ <!--</script>-->
+
+<script>
+
+function initMap() {
+  var mapDiv = document.getElementById('googleMap');
+  var map = new google.maps.Map(mapDiv, {
+    zoom: 16,
+    center: new google.maps.LatLng(<%= @restaurant.latitude %>, <%= @restaurant.longitude %>)
+  });
+  
+  var marker = new google.maps.Marker({
+      position: {
+        lat: <%= @restaurant.latitude %>,
+        lng: <%= @restaurant.longitude %>
+      },
+      map: map
+    });
+  
+}
+</script>

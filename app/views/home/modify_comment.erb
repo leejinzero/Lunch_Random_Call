@@ -1,0 +1,48 @@
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div class="container">
+  <div class="row cafedetail-container">
+    <div>
+      <p class="cafedetail-cafename">
+        <span>
+          코맨트 수정
+        </span>
+      </p>
+    </div>
+    <% if user_signed_in? %>
+      <form action="/home/modify/<%= @comment.id %>" method="GET" enctype="multipart/form-data" style="width:100%">    
+        <div class="col-md-12 cafereplies-container">
+          <div class="col-md-4">
+            <img src ="<%= @comment.user.image %>" >
+            <%= @comment.user.name %> :
+          </div>
+          <div class="col-md-5 cafecomment-content">
+            <input type="text" class="form-control" name="msg" placeholder="별점 체크 후 평가를 남겨주세요" value="<%= @comment.comment %>" required>
+          </div>
+          <div class="col-md-3">
+            <span class="star-rating">
+              <% 1.upto(5) do |i| %>
+                <% if i == @comment.score %>
+                    <input type="radio" name="rating" value="<%= i %>"  checked="checked" required><i></i>
+                  <% else %>
+                    <input type="radio" name="rating" value="<%= i %>" required><i></i>
+                  <% end %>
+              <% end %>
+            </span>
+          </div>     
+        </div>
+        <div class="col-md-12 cafereplies-container">
+          <div class="cafecomment-content">
+            <input class="btn btn-primary btn-lg btn-block" type="submit" value="수정" >
+            <a class="btn btn-default btn-lg btn-block" href="/restaurant/<%= @comment.restaurant.id %>" >취소</a>
+          </div>
+        </div>
+      </form>
+    <% end %>
+  </div>
+</div>

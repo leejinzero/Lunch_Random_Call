@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>JJOK BAB - 경북대 모든 밥집</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+ 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  <%= javascript_include_tag 'application', 'da ta-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  
+  
+</head> 
+<body>
+  
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    
+      <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand nav-font" href="/home/index"><font color="white">JJOK BAB</font></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a href="/location/daum_api" class="dropdown-toggle">음식점 등록</a>
+            </li>
+            <% if user_signed_in? %>
+              <li>
+                <a href="#" class="dropdown-toggle" >
+                  <%= image_tag(current_user.image, size: '20x20', style:'border-radius:3px;vertical-align:top;') if current_user.image %>
+                  <%= current_user.name %>
+                </a>
+              </li>
+              <li>
+                <%= link_to "로그 아웃", destroy_user_session_path, method: :delete, data: { confirm: "로그아웃 하시겠습니까?" } %>
+              </li>
+            <% else %>
+              <li><%= link_to "로그인", user_omniauth_authorize_path(:facebook) %></li>
+            <% end %>
+          </ul>
+          <form class="navbar-form navbar-right">
+            <input type="text" class="form-control" placeholder="검색">
+          </form>
+        </div>
+      </div>
+     <% if flash[:notice] == "이미 등록하셨습니다" %>
+       <div class="row">
+          <div class="col-sm-2"></div>
+          <div class="col-sm-8">
+            
+              <div class="alert alert-alert">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong><%= flash[:notice] %></strong> 
+              </div>
+            
+          </div>
+       </div>
+     <% end %>
+     
+     
+    </nav>
+ 
+    
+
+<%= yield %>
+
+<footer>
+  <div class="footer section">
+    <div class="container">
+      <ul class="footer-menu">
+        <li class="footer-menu_item"><a href="#" class="footer-menu_item_link">이용약관</a></li>
+        <li class="footer-menu_item"><a href="#" class="footer-menu_item_link">개인정보 보호정책</a></li>
+        <li class="footer-menu_item"><a href="/home/support" class="footer-menu_item_link">문의하기</a></li>
+        <li class="footer-menu_item"><a href="/home/findus" class="footer-menu_item_link">찾아오시는 길</a></li>
+      </ul>
+      <div class="legal">
+        <p>프로젝트의 완수와 선물의 실행에 관한 책임은 전적으로 해당 프로젝트의 진행자에게 있습니다만, </br>
+          후원자분과 진행자분 간의 커뮤니케이션에 문제가 발생한다면 텀블벅은 당연히 책임감을 갖고 돕습니다.
+        </p>
+      </div>
+      
+      <div class="company row">
+        <div class="col-md-1 company_name">
+          <p>JJOK BAB</p>
+        </div>
+        <div class="col-md-9">
+          <dl>
+            <dt class="item">공동대표</dt>
+            <dd class="item">김동환 이지운</dd>
+            <dt class="item">소속</dt>
+            <dd class="item">경북대학교 전자공학부 GNB</dd>
+            <dt class="item">영업소재지</dt>
+            <dd class="item">대구광역시 북구 산격동 경북대학교 IT 2호관</dd><br/>
+          </dl>
+          <dl>
+            <dt class="item">소프트웨어 동아리</dt>
+            <dd class="item">GNB</dd>
+            <dt class="item">전화</dt>
+            <dd class="item">010-6330-5225</dd>
+          </dl>
+        </div>
+      </div> 
+    </div>
+  </div>
+</footer>
+<script src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyBFL-4oq2DfESdrYsx3lM3_KX94jkNSwjo&signed_in=true&callback=initMap" async defer></script>
+
+  </body>
+
+</body>
+</html>

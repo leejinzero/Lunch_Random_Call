@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+  	<div class="top-sentence">
+  		<div>
+  		  <div>
+    			<h1>문의사항을 입력해주세요.</h1>
+    			<p>JJOK BAB 은 여러분의 힘으로 만들어 집니다. 작은 오류나 잘못된 정보가 있으면 보내주세요! 좋은 서비스로 보답하겠습니다.</p>
+  			</div>
+        <form action="/home/email_send" method="POST">
+          <div>
+        	  <p>보내는 사람: <input type="text" name="email" value="<%= current_user.email %>"></p>
+        	</div>
+        	<div>
+        	  <p>제목: <input type="text" name="title"></p>
+        	</div>
+        	<div>
+        	  <p>내용: <textarea name="content"></textarea></p>
+        	</div>
+        	<input type="submit" value="보내기">
+        </form>
+	    </div>
+	  </div>
+	</div>
+</div>
