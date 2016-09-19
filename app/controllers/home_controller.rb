@@ -23,7 +23,7 @@ class HomeController < ApplicationController
       
     end
     @random = @select_restaurant.sample()
-    @comments = @random.comments
+    #@comments = @random.comments
 
   end
   def foo
