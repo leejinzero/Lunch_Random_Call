@@ -32,6 +32,7 @@
           <!-- data-toggle="modal"data-target="#okay" -->
           <button type="submit" name="btn" class="btn btn-default bt-n-lg btn-block">SEARCH</button><br>
           <button type="submit"  class="btn btn-default bt-n-lg btn-block" name="pick" value="pick">RANDOM PICK</button>
+          
           <% if @pick == "pick" %>
            <button type="button"  class="btn btn-primary bt-n-lg btn-block" data-toggle="modal"data-target="#okay" id="random" style="display:none">RANDOM PICK2</button>
           <% end %> 
@@ -53,6 +54,9 @@
                 <div class="content-top">
                   <p class="overflow">
                     <%= r.name %>
+                  </p>
+                  <p class="content-phone_number">
+                    <%= r.phone_number %>
                   </p>
                   <div class="content-foodtype">
                     <% r.restaurant_foodtypes.each do |rf| %>
@@ -105,7 +109,8 @@
           <% else %>
             <p><%= @msg %></p>
             <% @select_restaurant.each do |r| %>
-              <p><%= r.id %></p>
+
+<p><%= r.id %></p>
               <p>식당이름: <%= r.name %></p>
               <p>전화번호: <%= r.phone_number %></p>
               <p>주소: <%= r.address %> (<%= r.latitude %>, <%=r.longitude %>)</p>
@@ -222,7 +227,8 @@
                       주소: <%= @random.address %>
                     </span>
                   </p>
-                  <p class="cafedetail-cafesignature">
+
+<p class="cafedetail-cafesignature">
                     <div class="table-responsive table-scroll">
                       <table class="table">
                         <thead>
@@ -346,4 +352,3 @@
 
 
 </script>
-

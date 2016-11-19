@@ -22,7 +22,8 @@ class HomeController < ApplicationController
       @select_restaurant = Restaurant.all
       
     end
-    @random = @select_restaurant.sample()
+    
+    @random = Restaurant.all.sample()
     #@comments = @random.comments
 
   end
