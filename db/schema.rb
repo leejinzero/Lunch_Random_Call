@@ -51,6 +51,16 @@ ActiveRecord::Schema.define(version: 20160201085614) do
     t.string   "address",       null: false
     t.float    "latitude",      null: false
     t.float    "longitude",     null: false
+    t.string   "menu_a",        null: false
+    t.string   "price_a",       null: false
+    t.string   "menu_b",        null: false
+    t.string   "price_b",       null: false
+    t.string   "menu_c",        null: false
+    t.string   "price_c",       null: false
+    t.string   "menu_d",        null: false
+    t.string   "price_d",       null: false
+    t.string   "menu_e",        null: false
+    t.string   "price_e",       null: false
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end

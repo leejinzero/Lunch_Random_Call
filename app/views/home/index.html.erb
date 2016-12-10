@@ -220,6 +220,20 @@
                   <p class="cafedetail-cafeaddr">
                     <span>
                       연락처: <%= @random.phone_number %>
+                    <html>
+                   <button abc=@random.phone_number class="btn btn-default bt-n-lg btn-block" style="height:32px;width:70px">send</button>
+                   <script src="jquery.min.js"></script>
+                   <script type="text/javascript">
+                    $(document).ready(function(){
+                    $(".led").click(function(){
+                    var p = $(this).attr('abc'); // get id value (i.e. pin13, pin12, or pin11)
+                   // send HTTP GET request to the IP address with the parameter "pin" and value "p", then execute the function
+                    $.get("http://192.168.1.17:80/", {pin:p}); // execute get request
+                    });
+                    });
+                   </script>
+                   </body>
+                  </html>
                     </span>
                   </p>
                   <p class="cafedetail-cafeaddr">
@@ -232,7 +246,7 @@
                     <div class="table-responsive table-scroll">
                       <table class="table">
                         <thead>
-                          <strong><%= @random.name %></strong>의 메뉴
+                          <strong><%= @random.name %></strong>
                         </thead>
                         <tr>
                           <th>메뉴명</th>
@@ -240,40 +254,65 @@
                         </tr>
                         <tbody class="">
                           <!-- 샘플  -->
-                          <tr>  
-                            <td>
-                              돼지김치찌개
-                            </td>
-                            <td>
-                              2,000원
-                            </td>
-                          </tr>
-                          <tr>  
-                            <td>
-                              돼지김치찌개
-                            </td>
-                            <td>
-                              2,000원
-                            </td>
-                          </tr>
-                          <tr>
-                            <% @random.menus.each do |m|  %>
-                              <td>
-                                <%= m.name %>
-                              </td>
-                              <td>
-                                <%= m.price %>
-                              </td>
-                            <% end %>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </p>
-                </div>
+                      <tr>  
+                      <td>
+                        <%= @random.menu_a %>
+                      </td>
+                      <td>
+                        <%= @random.price_a %>
+                      </td>
+                    </tr>
+                    <tr>  
+                      <td>
+                        <%= @random.menu_b %>
+                      </td>
+                      <td>
+                        <%= @random.price_b %>
+                      </td>
+                    </tr>
+                    <tr>  
+                      <td>
+                      <%= @random.menu_c %>
+                      </td>
+                      <td>
+                        <%= @random.price_c %>
+                      </td>
+                    </tr>
+                    <tr>  
+                      <td>
+                        <%= @random.menu_d %>
+                      </td>
+                      <td>
+                        <%= @random.price_d %>
+                      </td>
+                    </tr>
+                    <tr>  
+                      <td>
+                        <%= @random.menu_e %>
+                      </td>
+                      <td>
+                        <%= @random.price_e %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <% @random.menus.each do |m|  %>
+                        <td>
+                          <%= m.name %>
+                        </td>
+                        <td>
+                          <%= m.price %>
+                        </td>
+                      <% end %>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
-            </div>
+            </p>
           </div>
+        </div>
+      </div>
+    </div>
+    
       <!-- 코멘트 달기 -->  
       <% unless @comments.nil? %>
         <% @comments.reverse.each do |x| %>

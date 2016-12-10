@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   
   resources :restaurant
   get 'home/index'
+  get 'home/number'
   get 'list/all'
   get 'home/foo'
   get 'location/daum_api'

@@ -9,6 +9,16 @@ class CreateRestaurants < ActiveRecord::Migration
       t.string :address, null: false # 주소
       t.float :latitude, null: false # 위도      
       t.float :longitude, null: false # 경도
+      t.string :menu_a, null: false  # 가게이름 
+      t.string :price_a, null: false  # 가게이름 
+      t.string :menu_b, null: false  # 가게이름 
+      t.string :price_b, null: false  # 가게이름 
+      t.string :menu_c, null: false  # 가게이름 
+      t.string :price_c, null: false  # 가게이름
+      t.string :menu_d, null: false  # 가게이름 
+      t.string :price_d, null: false  # 가게이름 
+      t.string :menu_e, null: false  # 가게이름 
+      t.string :price_e, null: false  # 가게이름 
       
     #  t.boolean :bun_sik #분식
      # t.boolean :chicken # 치킨/찜닭

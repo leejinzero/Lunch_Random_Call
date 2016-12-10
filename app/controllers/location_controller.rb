@@ -10,6 +10,16 @@ class LocationController < ApplicationController
     restaurant.longitude = params[:longitude]
     restaurant.name = params[:name]
     restaurant.phone_number = params[:phone_number]
+    restaurant.menu_a = params[:menu_a]
+    restaurant.menu_b = params[:menu_b]
+    restaurant.menu_c = params[:menu_c]
+    restaurant.menu_d = params[:menu_d]
+    restaurant.menu_e = params[:menu_e]
+    restaurant.price_a = params[:price_a]
+    restaurant.price_b= params[:price_b]
+    restaurant.price_c= params[:price_c]
+    restaurant.price_d= params[:price_d]
+    restaurant.price_e= params[:price_e]
     restaurant.average_score = 0
     if (params[:delivery] == "true")
       restaurant.delivery = true

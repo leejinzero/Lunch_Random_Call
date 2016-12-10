@@ -1,0 +1,21 @@
+<html>
+ <head>
+  <title>ESP8266 LED Control</title>
+ </head>
+ <body>
+ 
+ <!-- in the <button> tags below the ID attribute is the value sent to the arduino -->
+ <h>ESP8266 LED Control</h></br></br>
+ <button abc class="led" style="height:150px;width:150px">Random</button> <!-- button for pin 11 -->
+ <script src="jquery.min.js"></script>
+ <script type="text/javascript">
+  $(document).ready(function(){
+   $(".led").click(function(){
+    var p = $(this).attr('abc'); // get id value (i.e. pin13, pin12, or pin11)
+    // send HTTP GET request to the IP address with the parameter "pin" and value "p", then execute the function
+    $.get("http://192.168.1.17:80/", {pin:p}); // execute get request
+   });
+  
+ </script>
+ </body>
+</html>
