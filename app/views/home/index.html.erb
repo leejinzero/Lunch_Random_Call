@@ -221,19 +221,27 @@
                     <span>
                       연락처: <%= @random.phone_number %>
                     <html>
-                   <button abc=@random.phone_number class="btn btn-default bt-n-lg btn-block" style="height:32px;width:70px">send</button>
-                   <script src="jquery.min.js"></script>
-                   <script type="text/javascript">
-                    $(document).ready(function(){
-                    $(".led").click(function(){
-                    var p = $(this).attr('abc'); // get id value (i.e. pin13, pin12, or pin11)
-                   // send HTTP GET request to the IP address with the parameter "pin" and value "p", then execute the function
-                    $.get("http://192.168.1.17:80/", {pin:p}); // execute get request
-                    });
-                    });
-                   </script>
-                   </body>
-                  </html>
+ <head>
+  <title>ESP8266 LED Control</title>
+ </head>
+ <body>
+ 
+ <!-- in the <button> tags below the ID attribute is the value sent to the arduino -->
+ <button id="<%= @random.phone_number %>" class="led" style="height:28px;width:80px">send</button> <!-- button for pin 11 -->
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+ <script type="text/javascript">
+  $(document).ready(function(){
+   $(".led").click(function(){
+    var p = $(this).attr('id'); // get id value (i.e. pin13, pin12, or pin11)
+    // send HTTP GET request to the IP address with the parameter "pin" and value "p", then execute the function
+    $.get("http://192.168.0.4:80/", {pin:p}); // execute get request
+   });
+  });
+  
+ </script>
+ </body>
+</html>
                     </span>
                   </p>
                   <p class="cafedetail-cafeaddr">
