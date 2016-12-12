@@ -142,6 +142,9 @@ lcd.backlight();
     else
     break;
   }
+     
+       delay(3000);
+
        for(i=0;i<p_l;i++)
     {
         if(phoneNum[i]<=9&&phoneNum[i]>=0)
