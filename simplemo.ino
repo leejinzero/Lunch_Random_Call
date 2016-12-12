@@ -74,7 +74,8 @@ void checkNumb(int a)
     motor36.step(-degree);
     break;
     case 4 :
-    motor45.step(30);
+    motor45.step(degree);
+    motor45.step(-degree);
     break;
     case 5 :
     motor45.step(-degree);
@@ -89,6 +90,7 @@ void checkNumb(int a)
     motor78.step(-degree);
     break;
     case 8 :
+    motor78.step(degree);
     motor78.step(-degree);
 
     break;
