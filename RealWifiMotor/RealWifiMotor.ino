@@ -60,8 +60,7 @@ void setup() {
   motor78.setSpeed(30);
   motor90.setSpeed(30);
 
-}
-void checkNumb(int a) 
+}void checkNumb(int a) 
 {
    switch(a) 
    {
@@ -93,13 +92,13 @@ void checkNumb(int a)
     motor36.step(-degree);
     motor36.step(degree);
     break;
-    case 7 :
-    motor78.step(degree);
+    case 7 :   
     motor78.step(-degree);
+    motor78.step(degree);
     break;
     case 8 :
-    motor78.step(-degree);
     motor78.step(degree);
+    motor78.step(-degree);
     break;
     case 9 :
     motor90.step(degree);
